@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Boggle Game</h1>
+    <table>
+        {% for row in board %}
+            <tr>
+                {% for letter in row %}
+                    <td>{{ letter }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    <form id="form" action="/check-word" method="post">
+        <label for="word">Enter a word:</label>
+        <input type="text" id="word" name="word">
+        <button type="submit">Submit</button>
+    </form>
+    <div id="result"></div>
+    <div id="score">Score: 0</div>
+    <div id="time">Time: 60</div>
+    <div id="times-played">Times Played: {{ session.get('times_played', 0) }}</div>
+    <div id="high-score">High Score: {{ session.get('high_score', 0) }}</div>
+    <script src="http://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/axios@0.19.0/dist/axios.js"></script>
+    <script src="/static/boggle.js"></script>
+</body>
+</html>
